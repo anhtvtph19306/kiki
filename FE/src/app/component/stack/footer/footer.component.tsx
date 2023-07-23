@@ -111,8 +111,10 @@ const cssFooter = css`
     background-color: white;
     font-family: var(--ff-beviet);
     font-size: 1.4rem;
+    
     @media (min-width: 0) and (max-width: 739px) {
-        max-width:300px
+        max-width:100%; 
+        position: absolute;               
     }
     .div1{padding: 16px 0px};
 
@@ -121,13 +123,13 @@ const cssFooter = css`
         justify-content: space-between;
         gap: 20px;
         padding: 0 16px;
-        @media (min-width: 0) and (max-width: 739px) {
+        @media (min-width: 0) and (max-width: 739px) {            
            display:block;
            text-align:center;           
         }
     };
 
-    .block{ width: 268px};
+    .block{ width: 268px, margin:auto};
 
     .h4{
         font-size: var(--fs-7);
@@ -136,13 +138,9 @@ const cssFooter = css`
         color: rgb(56, 56, 61);
         margin-bottom: 12px;
         margin-top: 0px;
-
         display: block;
         margin-block-start: 1.33rem;
-        margin-block-end: 1.33rem;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-        font-weight: bold;
+        margin-block-end: 1.33rem;       
     };
 
     .hotline{margin-bottom: 8px};

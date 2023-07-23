@@ -18,7 +18,7 @@ const DefaultHome: FunctionComponent<DefaultHomeProps> = () => {
             </div>
             <VorcherHeade />
             <Outlet />
-            {/* <FooterComponent /> */}
+            <FooterComponent />
         </div>
     )
 }
