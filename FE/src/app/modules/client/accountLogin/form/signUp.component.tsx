@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { css } from '@emotion/react';
 
 const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -27,6 +28,7 @@ const SignUp: React.FC = () => (
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        css={form}
     >
         <Form.Item<FieldType>
             label="Name"
@@ -94,7 +96,7 @@ const SignUp: React.FC = () => (
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="default" htmlType="submit">
+            <Button type="primary" htmlType="submit" className='button'>
                 Đăng Ký
             </Button>
         </Form.Item>
@@ -102,3 +104,14 @@ const SignUp: React.FC = () => (
 );
 
 export default SignUp;
+const form = css`
+    .button{
+        margin: 30px 0px 10px;        
+        border-radius: 4px;
+        background: rgb(255, 66, 78);        
+        width: 100%;
+        color: rgb(255, 255, 255);
+        border: none;
+        font-size: 15px;        
+    }
+`
