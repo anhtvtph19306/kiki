@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { LockOutlined, UserOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
+import { css } from '@emotion/react';
 
 const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -19,60 +21,61 @@ type FieldType = {
 
 const SignUp: React.FC = () => (
     <Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
+        name="normal_login"
+        className="login-form"
         initialValues={{ remember: true }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
+        css={form}
     >
         <Form.Item<FieldType>
-            label="Name"
+
             name="name"
             rules={[
                 { required: true, message: 'Please input your Name!' },
             ]}
         >
-            <Input />
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
         </Form.Item>
 
         <Form.Item<FieldType>
-            label="PhoneNumber"
+
             name="phoneNumber"
             rules={[
                 { required: true, message: 'Please input your phoneNumber!' },
                 { min: 6, max: 12, message: 'Invalid phoneNumber format!' }
             ]}
         >
-            <Input />
+            <Input prefix={<PhoneOutlined className="site-form-item-icon" />} placeholder="PhoneNumber" />
         </Form.Item>
 
         <Form.Item<FieldType>
-            label="Email"
+
             name="email"
             rules={[
                 { required: true, message: 'Please input your email!' },
                 { type: "email", message: "Invalid email format" }
             ]}
         >
-            <Input />
+            <Input prefix={<MailOutlined className="site-form-item-icon" />} placeholder="Email" />
         </Form.Item>
 
         <Form.Item<FieldType>
-            label="Password"
+
             name="password"
             rules={[
                 { required: true, message: 'Please input your password!' },
                 { min: 6, message: "Password must be at least 6 characters" }
             ]}
         >
-            <Input.Password />
+            <Input
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+            />
         </Form.Item>
 
         <Form.Item<FieldType>
-            label="Confirm Password"
+
             name="confirmPassword"
             dependencies={["password"]}
             rules={[
@@ -90,15 +93,30 @@ const SignUp: React.FC = () => (
                 }),
             ]}
         >
-            <Input.Password />
+            <Input
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Confirm Password"
+            />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="default" htmlType="submit">
-                Đăng Ký
+        <Form.Item >
+            <Button type="primary" htmlType="submit" className="login-form-button button">
+                Đăng ký
             </Button>
         </Form.Item>
     </Form>
 );
 
 export default SignUp;
+const form = css`
+    .button{
+        margin: 30px 0px 10px;        
+        border-radius: 4px;
+        background: rgb(255, 66, 78);        
+        width: 100%;
+        color: rgb(255, 255, 255);
+        border: none;
+        font-size: 15px;        
+    }
+`
