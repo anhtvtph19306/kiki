@@ -37,16 +37,18 @@ const addCarts = catchAsync(async (req, res) => {
         const findObjectRemainWithColor = productLocal.listQuantityRemain.find(
             (item) => item.nameColor === bodyRequet.quantityOrder.nameColor,
         )
-
-        if (findObjectRemainWithColor) {
-            if (
-                findObjectRemainWithColor.quantity < bodyRequet.quantityOrder.quantity ||
-                findProduct.quantityOrder.quantity + bodyRequet.quantityOrder.quantity >
-                findObjectRemainWithColor.quantity
-            ) {
-                return res.status(status.BAD_REQUEST).json('Đã vượt quá số lượng')
+        if (findProduct) {
+            if (findObjectRemainWithColor) {
+                if (
+                    findObjectRemainWithColor.quantity < bodyRequet.quantityOrder.quantity ||
+                    findProduct.quantityOrder.quantity + bodyRequet.quantityOrder.quantity >
+                    findObjectRemainWithColor.quantity
+                ) {
+                    return res.status(status.BAD_REQUEST).json('Đã vượt quá số lượng')
+                }
             }
         }
+
     }
 
     await addCart(bodyRequet)

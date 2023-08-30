@@ -82,14 +82,14 @@ const QuantityProduct: FunctionComponent<QuantityProduct> = (
   return (
     <div className='pb-6'>
       <div className="sm:flex items-center mt-5 max-sm:flex">
-        <button className={`border p-2 ${objectError.increment && 'pointer-events-none bg-slate-200'} `} onClick={handleIncrement}>
-          +
+        <button className="border py-2 px-3" onClick={handleDecrement}>
+          -
         </button>
         <input type="text" onChange={handleChangeInput} className="max-sm:w-[25px] border h-11 w-16 text-center focus:outline-none focus:border-sky-600 "
           value={quantity}
         />
-        <button className="border py-2 px-3" onClick={handleDecrement}>
-          -
+        <button className={`border p-2 ${objectError.increment && 'pointer-events-none bg-slate-200'} `} onClick={handleIncrement}>
+          +
         </button>
       </div>
     </div>

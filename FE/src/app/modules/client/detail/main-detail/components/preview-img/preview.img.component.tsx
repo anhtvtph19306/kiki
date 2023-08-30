@@ -19,7 +19,6 @@ const PreviewImg: FunctionComponent<DemoCarouselProps> = () => {
   }, []);
 
   const { data: { product: productDetail } } = useProductRedux()
-  console.log(productDetail)
   return (
     <div css={cssPreviewImg}>
       <Carousel

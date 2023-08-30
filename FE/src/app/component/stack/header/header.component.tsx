@@ -6,6 +6,7 @@ import { AiOutlineUserAdd } from "react-icons/ai"
 import { FaCartPlus } from "react-icons/fa"
 import Register from '~/app/modules/client/accountLogin/accountLogin.component'
 import { useCartRedux } from '~/app/modules/client/redux/hook/useCartReducer'
+import { Link } from 'react-router-dom'
 
 interface HeaderComponentProps {
     props?: any
@@ -22,16 +23,20 @@ const HeaderComponent: FunctionComponent<HeaderComponentProps> = () => {
     }, [])
     return (
         <div className='flex items-center justify-between sm:w-[1440px]'>
-            <img src="https://salt.tikicdn.com/ts/upload/e4/49/6c/270be9859abd5f5ec5071da65fab0a94.png" className='w-[57px] mr-12 max-sm:hidden' />
+            <Link to={"/"}>
+                <img src="https://salt.tikicdn.com/ts/upload/e4/49/6c/270be9859abd5f5ec5071da65fab0a94.png" className='w-[57px] mr-12 max-sm:hidden' />
+            </Link>
+
             <InputComponent />
             <div className='ml-12 flex align-items:center max-sm:hidden' css={cssWrapperMenu}>
-                <div className='item-menu active'>
-                    <div className='icon'>
-                        <ImHome />
+                <Link to={"/"}>
+                    <div className='item-menu active'>
+                        <div className='icon'>
+                            <ImHome />
+                        </div>
+                        <div className='title'>Trang chủ</div>
                     </div>
-                    <div className='title'>Trang chủ</div>
-                </div>
-
+                </Link>
                 <div className='item-menu'>
                     <div className='icon'>
                         <ImHome />
@@ -46,12 +51,13 @@ const HeaderComponent: FunctionComponent<HeaderComponentProps> = () => {
                     <div className='title'><Register /></div>
                 </div>
             </div>
-            <div css={cssCartMain} className='cart-main relative'>
-                <FaCartPlus />
-                {carts?.length > 0 && <span className='absolute show-count'>{carts?.length}</span>}
-            </div>
-
-        </div>
+            <Link to={"/cart"}>
+                <div css={cssCartMain} className='cart-main relative'>
+                    <FaCartPlus />
+                    {carts?.length > 0 && <span className='absolute show-count'>{carts?.length}</span>}
+                </div>
+            </Link>
+        </div >
     )
 }
 

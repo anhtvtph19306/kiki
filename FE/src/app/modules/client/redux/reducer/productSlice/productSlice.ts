@@ -13,10 +13,9 @@ const productSlice = createSlice({
             state.products = action.payload
         })
         builder.addCase(getOneProduct.fulfilled, (state: any, action) => {
-            console.log(action.payload)
             state.product = action.payload
         })
-        
+
     }
 })
 export const { actions } = productSlice

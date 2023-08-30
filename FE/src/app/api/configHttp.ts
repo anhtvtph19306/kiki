@@ -1,7 +1,6 @@
 import axios from 'axios'
 const accessToken = localStorage.getItem('accessToken') ||
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU1NmM5ZTEzOTYzNTk4NWQ0OGQ4ODIiLCJpYXQiOjE2OTI3OTQ0MDQsImV4cCI6MTY5Mjc5ODAwNH0.DHLvdUz9RU1go6qqqRc1qhbwiLpEaO7HenFKiSi2puU'
-
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU1NmM5ZTEzOTYzNTk4NWQ0OGQ4ODIiLCJpYXQiOjE2OTMxMzA4MDUsImV4cCI6MTY5MzEzNDQwNX0.3L5i5-QCDsZBr9nJ3gAhfVExRm_OU2xoso3RScCW890'
 export const axiosPrivate = axios.create({
     baseURL: "http://localhost:8081/api",
     headers: {

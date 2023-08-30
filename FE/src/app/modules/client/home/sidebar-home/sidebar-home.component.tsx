@@ -1,11 +1,16 @@
 import { css } from '@emotion/react'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect } from 'react'
+import { useCategoryRedux } from '../../redux/hook/useCategoryReducer'
 
 interface SideBarHomeProps {
     props?: any
 }
 
 const SideBarHome: FunctionComponent<SideBarHomeProps> = () => {
+    const { data: categorys, actions } = useCategoryRedux()
+    useEffect(() => {
+        actions.getAllcategory()
+    }, [])
     return (
         <div css={cssSidebar} className='sm:sticky'>
             <div className='sidebar-wrapper mb-4 max-sm:hidden'>
@@ -112,96 +117,17 @@ const SideBarHome: FunctionComponent<SideBarHomeProps> = () => {
                 <div className='outanding max-sm:hidden' >
                     Danh mục
                 </div>
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/a0/c9/78/cddabc413834de509f40455498c7ff47.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
+                {categorys?.categorys?.map((item: any, index: any) => (
 
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/cb/64/f7/0ebb0ae297f052e34a8161c9bf8efb96.png.webp" alt="" className='w-[32px] text-center' />
+                    <div className='item-out ' key={index}>
+                        <div className='icon mr-2'>
+                            <img src={item?.image} alt="" className='w-[32px] text-center' />
+                        </div>
+                        <div className='title'>
+                            {item?.name}
+                        </div>
                     </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
-
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/a0/c9/78/cddabc413834de509f40455498c7ff47.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
-
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/cb/64/f7/0ebb0ae297f052e34a8161c9bf8efb96.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
-
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/a0/c9/78/cddabc413834de509f40455498c7ff47.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
-
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/cb/64/f7/0ebb0ae297f052e34a8161c9bf8efb96.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
-
-
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/3c/ce/96/db8c083610e45b78d8f7662f0013faa8.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
-
-
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/a0/c9/78/cddabc413834de509f40455498c7ff47.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
-
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/a0/c9/78/cddabc413834de509f40455498c7ff47.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
-                <div className='item-out '>
-                    <div className='icon mr-2'>
-                        <img src="https://salt.tikicdn.com/cache/100x100/ts/upload/a0/c9/78/cddabc413834de509f40455498c7ff47.png.webp" alt="" className='w-[32px] text-center' />
-                    </div>
-                    <div className='title'>
-                        Astra Reward
-                    </div>
-                </div>
+                ))}
             </div>
 
 

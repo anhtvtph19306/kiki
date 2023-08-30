@@ -6,11 +6,12 @@ interface ButtonComponent {
   className?: string,
   children?: React.ReactNode
   outline?: boolean
+  onClick?: any
 }
 
-const ButtonSqua: FunctionComponent<ButtonComponent> = ({ children, className, outline = false }) => {
+const ButtonSqua: FunctionComponent<ButtonComponent> = ({ children, className, outline = false, onClick }) => {
   return (
-    <button css={cssButton(outline)} className={className}>
+    <button css={cssButton(outline)} className={className} onClick={onClick}>
       {children}
     </button>
   )

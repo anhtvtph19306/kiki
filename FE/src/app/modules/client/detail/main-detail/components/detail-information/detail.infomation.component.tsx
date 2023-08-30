@@ -6,10 +6,13 @@ import ButtonSqua from '~/app/component/parts/button/ButtonSqua'
 import ButtonIcon from '../../../../../../component/parts/button/Button-Icon.componet'
 import { useProductRedux } from '~/app/modules/client/redux/hook/useProductReducer'
 import { getListColor, getListSize } from '~/app/modules/client/helper/tranform.data'
+import { useCartRedux } from '~/app/modules/client/redux/hook/useCartReducer'
+import { addProductToCart } from '~/app/api/cart/cart.api';
 interface DetailInformation { }
 
 const DetailInformation: FunctionComponent<DetailInformation> = () => {
   const { data: { product: productDetail } } = useProductRedux()
+  const { actions } = useCartRedux()
   const [quantity, setQuantity] = useState(1) // quantity ban đầu
   const [colorSelect, setColorSelect] = useState<any>()// lựa chọn color
   const [sizeSelect, setSizeSelect] = useState<any>()// lựa chọn size
@@ -52,14 +55,34 @@ const DetailInformation: FunctionComponent<DetailInformation> = () => {
     const filterListQuantity = productDetail.listQuantityRemain?.filter(
       (item: any) => item.nameColor === colorSelect?.nameColor || item.nameSize === sizeSelect?.nameSize
     )
-    console.log(filterListQuantity)
     const findQuantityRemain = productDetail.listQuantityRemain?.find(
       (item: any) => item.nameColor === colorSelect?.nameColor && item.nameSize === sizeSelect?.nameSize
     )
-    console.log(filterListQuantity)
     setCheckQuantity(filterListQuantity)
     setquantityRemainProduct(findQuantityRemain)
   }, [colorSelect, sizeSelect])
+
+  const handelAddProductToCart = () => {
+    const requestProduct = {
+      product: productDetail,
+      quantityOrder: {
+        quantity,
+        nameColor: colorSelect.nameColor,
+        nameSize: sizeSelect.nameSize
+      }
+    }
+    actions.addProductToCart(requestProduct)
+
+    const requestApiCart = {
+      productId: productDetail._id,
+      quantityOrder: {
+        quantity,
+        nameColor: colorSelect.nameColor,
+        nameSize: sizeSelect.nameSize
+      }
+    }
+    addProductToCart(requestApiCart)
+  }
 
   return (
     <div css={cssInfomation}>
@@ -151,7 +174,7 @@ const DetailInformation: FunctionComponent<DetailInformation> = () => {
             </div>
           </div>
           <div className='flex mt-5'>
-            <ButtonSqua outline className='rounded-xl border w-1/2 p-3  mx-2 text-white'>Chọn mua</ButtonSqua>
+            <ButtonSqua outline className='rounded-xl border w-1/2 p-3  mx-2 text-white' onClick={handelAddProductToCart}>Chọn mua</ButtonSqua>
             <ButtonSqua className='border border-sky-500 w-1/2 rounded-xl p-3 mx-2 text-blue-600'>Mua trước trả sau <p>Lãi xuất 0%</p></ButtonSqua>
           </div>
         </div>
